@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">AirPikachu.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="form-inline my-2 my-lg-0 mx-auto">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <ul class="navbar-nav mr-auto">
+        <% unless user_signed_in? %>
+          <li class="nav-item active">
+            <a class="nav-link" href="/users/sign_in">Login</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/users/sign_up">Signup</a>
+          </li>
+        <% else %>
+          <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.email %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Manage Listing</a>
+            <a class="dropdown-item" href="#">List Your Space</a>
+            <a class="dropdown-item" href="#">Your Reservations</a>
+            <a class="dropdown-item" href="#">Your Trips</a>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <a class="dropdown-item" href="/users/edit">Edit Profile</a>
+          </div>
+        </li> 
+        <% end %>
+        <!-- <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li> -->
+        
+      </ul>
+    </div>
+  </div>
+</nav>
